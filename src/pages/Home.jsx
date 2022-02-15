@@ -1,10 +1,14 @@
 // external imports
 import React from "react";
-import { AppBar, Box, TextField } from "@mui/material";
+import { AppBar, Box, TextField, Toolbar } from "@mui/material";
+
+// internal imports
+import Characters from './Characters';
 
 // TODO: simple SPA in this page for characters and character info pages
 const Home = (props) => {
   return (
+    <>
     <AppBar position="sticky" sx={{ height: 70, backgroundColor: "#ffffff" }}>
       <Box
         sx={{
@@ -22,6 +26,9 @@ const Home = (props) => {
         />
       </Box>
     </AppBar>
+    <Toolbar />
+    <Characters />
+    </>
   );
 };
 
