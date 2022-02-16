@@ -1,16 +1,17 @@
-import React from 'react';
-import {Container, Card, CardContent, CardMedia} from '@mui/material'
-import Image from 'material-ui-image';
-import { gql } from 'apollo-boost';
-import { useQuery } from '@apollo/react-hooks';
+import React from "react";
+import { Container, Card, CardContent, CardMedia } from "@mui/material";
+import Image from "material-ui-image";
+import { gql } from "apollo-boost";
+import { useQuery } from "@apollo/react-hooks";
+import { useParams } from "react-router-dom";
 
+const CharacterDetails = () => {
+  let { id } = useParams();
 
-
-const CharacterDetails = ({id}) => {
-    const GET_DETAILS = gql`
+  const GET_DETAILS = gql`
     query {
         character(id: ${id}) {
-              name
+          name
           status
           species
           gender
@@ -27,27 +28,23 @@ const CharacterDetails = ({id}) => {
           }
         }
       }
-    `
+    `;
 
-    const { loading, error, data } = useQuery(GET_DETAILS);
+  const { loading, error, data } = useQuery(GET_DETAILS);
 
-    if (loading) return 'Loading';
-    if (error) return `Error: ${error}`;
+  if (loading) return "Loading";
+  if (error) return `Error: ${error}`;
 
-    console.log(data);
-
-    return (
-        <Container>
-            <Card>
-                <CardMedia>
-                    <Image src={data.characters.results.image}/>
-                </CardMedia>
-                <CardContent>
-
-                </CardContent>
-            </Card>
-        </Container>
-    )
-}
+  return (
+    <Container>
+      <Card>
+        <CardMedia>
+          <Image src={data.character.image} />
+        </CardMedia>
+        <CardContent></CardContent>
+      </Card>
+    </Container>
+  );
+};
 
 export default CharacterDetails;
