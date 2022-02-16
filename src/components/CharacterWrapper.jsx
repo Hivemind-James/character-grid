@@ -1,3 +1,4 @@
+// external imports
 import React from "react";
 import {
   Card,
@@ -9,6 +10,7 @@ import {
 } from "@mui/material";
 import Image from "material-ui-image";
 
+// character wrapper for base grid
 const CharacterWrapper = ({ image, name, id, detailsOnClick }) => {
   return (
     <Card sx={{ maxHeight: 450, maxWidth: 380 }}>

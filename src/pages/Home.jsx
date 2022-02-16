@@ -7,6 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import Characters from "./Characters";
 import CharacterDetails from "./CharacterDetails";
 
+// home component with routing and app bar
 const Home = () => {
   return (
     <>

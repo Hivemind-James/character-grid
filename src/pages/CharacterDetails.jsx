@@ -1,21 +1,18 @@
+// external imports
 import React from "react";
-import {
-  Container,
-  Card,
-  CardContent,
-  CardMedia,
-  Box,
-  Typography,
-  CircularProgress,
-} from "@mui/material";
-import Image from "material-ui-image";
+import { Container, Box, Typography, CircularProgress } from "@mui/material";
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
 import { useParams } from "react-router-dom";
 
+// internal imports
+import CharacterInfoWrapper from "../components/CharacterInfoWrapper";
+
 const CharacterDetails = () => {
+  // get id from url parameters
   let { id } = useParams();
 
+  // query
   const GET_DETAILS = gql`
     query {
         character(id: ${id}) {
@@ -69,28 +66,19 @@ const CharacterDetails = () => {
           Character Details
         </Typography>
       </Box>
-      <Card sx={{ maxHeight: 600, maxWidth: 400 }}>
-        <CardMedia>
-          <Image src={data.character.image} />
-        </CardMedia>
-        <CardContent>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-            }}
-          >
-            <Typography>Name: {data.character.name}</Typography>
-            <Typography>Species: {data.character.species}</Typography>
-            <Typography>Gender: {data.character.gender}</Typography>
-            <Typography>Created: {data.character.created}</Typography>
-            <Typography>Origin: {data.character.origin.name}</Typography>
-            <Typography>Location: {data.character.location.name}</Typography>
-            <Typography>Episode: {data.character.episode.name}</Typography>
-          </Box>
-        </CardContent>
-      </Card>
+      <Box>
+        <CharacterInfoWrapper
+          image={data.character.image}
+          name={data.character.name}
+          gender={data.character.gender}
+          origin={data.character.origin.name}
+          status={data.character.status}
+          species={data.character.species}
+          location={data.character.location.name}
+          episode={data.character.episode.name}
+          created={data.character.created}
+        />
+      </Box>
     </Container>
   );
 };
