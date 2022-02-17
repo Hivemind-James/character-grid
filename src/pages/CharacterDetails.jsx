@@ -21,6 +21,7 @@ const CharacterDetails = () => {
           species
           gender
           image
+          type
           created
           origin {
             name
@@ -30,6 +31,7 @@ const CharacterDetails = () => {
           }
           episode {
             name
+            episode
           }
         }
       }
@@ -43,6 +45,7 @@ const CharacterDetails = () => {
         <CircularProgress />
       </Container>
     );
+
   if (error)
     return (
       <Container sx={{ display: "flex", justifyContent: "center" }}>
@@ -75,8 +78,9 @@ const CharacterDetails = () => {
           status={data.character.status}
           species={data.character.species}
           location={data.character.location.name}
-          episode={data.character.episode.name}
+          episodes={data.character.episode}
           created={data.character.created}
+          type={data.character.type}
         />
       </Box>
     </Container>
